@@ -1,21 +1,26 @@
 package com.example.shoppinglistapp.presentation
 
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.domain.ShopItem
-import java.lang.RuntimeException
 
-class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>() {
+//class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>() {
+class ShopListAdapter :
+    ListAdapter<ShopItem, ShopItemViewHolder>(ShopItemDiffCallback()) {
 
-    var shopList = listOf<ShopItem>()
+    var count = 0
+    /*var shopList = listOf<ShopItem>()
         set(value) {
+            val callback = ShopListDiffCallback(shopList, value)
+            val diffResult = DiffUtil.calculateDiff(callback)
+            //diffResult.dispatchUpdatesTo(this)
+            diffResult.dispatchUpdatesTo(this)
             field = value
-            notifyDataSetChanged()
-        }
+            //notifyDataSetChanged()
+        }*/
 
     //var onItemLongClickListener: IonItemLongClickListener? = null
     // т.к. интерфейс - функционльный, то можно так: (без него)
@@ -33,8 +38,10 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
     }
 
     override fun onBindViewHolder(holder: ShopItemViewHolder, position: Int) {
+        Log.d("Adapter", "onBindViewHolder: count = ${++count}")
 
-        val shopItem = shopList[position]
+        //val shopItem = shopList[position]
+        val shopItem = getItem(position)
 
         holder.tvName.text = shopItem.name
         holder.tvQty.text = shopItem.qty.toString()
@@ -48,13 +55,14 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
             onShopItemClickListener?.invoke(shopItem)
         }
     }
-
-    override fun getItemCount(): Int {
+/** Этот метод теперь скрыт внутри ListAdapter-а **/
+/*    override fun getItemCount(): Int {
         return shopList.size
-    }
+    }*/
 
     override fun getItemViewType(position: Int): Int {
-        val item = shopList[position]
+        //val item = shopList[position]
+        val item = getItem(position)
         return if (item.enabled) {
             VIEW_TYPE_ENABLE
         } else {
@@ -62,15 +70,10 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         }
     }
 
-    class ShopItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val tvName: TextView = view.findViewById<TextView>(R.id.tv_name)
-        val tvQty: TextView = view.findViewById<TextView>(R.id.tv_qty)
-    }
-
     companion object {
         const val VIEW_TYPE_DISABLE = 0
         const val VIEW_TYPE_ENABLE = 1
-        const val MAX_POOL_SIZE = 15
+        const val MAX_POOL_SIZE = 30
     }
 
     /*interface IonItemLongClickListener {

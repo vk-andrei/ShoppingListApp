@@ -2,7 +2,9 @@ package com.example.shoppinglistapp.presentation
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.shoppinglistapp.domain.ShopItem
-
+/** Этот класс не нужен. Использовался раньше. (он работает в главном потоке)
+ * Сейчас более умный - ShopItemDiffCallback (это сначала делает изм-я, потом обновляет список)
+ * **/
 class ShopListDiffCallback(
     private val oldList: List<ShopItem>,
     private val newList: List<ShopItem>
