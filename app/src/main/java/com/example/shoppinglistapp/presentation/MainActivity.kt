@@ -42,14 +42,21 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        /*shopListAdapter.onItemLongClickListener = object : ShopListAdapter.IonItemLongClickListener {
-            override fun onItemLongClick(shopItem: ShopItem) {
-                viewModel.changeEnableState(shopItem)
-            }
-        }*/
         setupLongClickListener()
         setupClickListener()
         setupSwipeListener(rvShopList)
+    }
+
+    private fun setupLongClickListener() {
+        shopListAdapter.onShopItemLongClickListener = {
+            viewModel.changeEnableState(it)
+        }
+    }
+
+    private fun setupClickListener() {
+        shopListAdapter.onShopItemClickListener = {
+            Log.d("MainAct", "shopListAdapter.onShopItemClickListener: item - $it")
+        }
     }
 
     private fun setupSwipeListener(rvShopList: RecyclerView) {
@@ -72,18 +79,6 @@ class MainActivity : AppCompatActivity() {
         }
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(rvShopList)
-    }
-
-    private fun setupClickListener() {
-        shopListAdapter.onShopItemClickListener = {
-            Log.d("MainAct", "shopListAdapter.onShopItemClickListener: item - $it")
-        }
-    }
-
-    private fun setupLongClickListener() {
-        shopListAdapter.onShopItemLongClickListener = {
-            viewModel.changeEnableState(it)
-        }
     }
 
 }
