@@ -1,7 +1,10 @@
 package com.example.shoppinglistapp.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -45,6 +48,13 @@ class MainActivity : AppCompatActivity() {
         setupLongClickListener()
         setupClickListener()
         setupSwipeListener(rvShopList)
+
+        val fab = findViewById<View>(R.id.fab_add_shop_item)
+        fab.setOnClickListener {
+            val i = Intent(this,  ShopItemActivity::class.java)
+            startActivity(i)
+        }
+
     }
 
     private fun setupLongClickListener() {
