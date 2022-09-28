@@ -18,7 +18,7 @@ object ShopListRepositoryImpl : ShopListRepository {
 
     /** FOR TEST **/
     init {
-        for (i in 0..4) {
+        for (i in 0..1) {
             val item = ShopItem("Name$i", i.toDouble(), Random.nextBoolean())
             addShopItem(item)
         }

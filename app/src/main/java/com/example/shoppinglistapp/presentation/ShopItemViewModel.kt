@@ -85,7 +85,7 @@ class ShopItemViewModel : ViewModel() {
             _errorInputName.value = true
             result = false
         }
-        if (qty < 0) {
+        if (qty <= 0) {
             _errorInputQty.value = true
             result = false
         }

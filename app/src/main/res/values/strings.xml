@@ -4,4 +4,6 @@
     <string name="save">Save</string>
     <string name="name">Name</string>
     <string name="quantity">Quantity:</string>
+    <string name="error_input_name">Invalid name</string>
+    <string name="error_input_qty">Invalid quantity</string>
 </resources>
