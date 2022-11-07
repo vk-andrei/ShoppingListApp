@@ -15,8 +15,6 @@ import com.example.shoppinglistapp.domain.ShopItem
 class ShopItemActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityShopItemBinding
-
-    /* private lateinit var viewModel: ShopItemViewModel*/
     private var screenMode = MODE_UNKNOWN
     private var shopItemId = ShopItem.UNDEFINED_ID
 
@@ -27,10 +25,6 @@ class ShopItemActivity : AppCompatActivity() {
 
         parseIntent()
         launchRightMode()
-
-        /*        viewModel = ViewModelProvider(this)[ShopItemViewModel::class.java]
-               observeViewModel()
-               addTextChangeListeners()*/
     }
 
     private fun parseIntent() {
@@ -62,77 +56,6 @@ class ShopItemActivity : AppCompatActivity() {
             .commit()
     }
 
-    /*
-        private fun observeViewModel() {
-            viewModel.errorInputName.observe(this) {
-                val message = if (it) {
-                    getString(R.string.error_input_name)
-                } else {
-                    null
-                }
-                binding.tilName.error = message
-            }
-
-            viewModel.errorInputQty.observe(this) {
-                val message = if (it) {
-                    getString(R.string.error_input_qty)
-                } else {
-                    null
-                }
-                binding.tilQty.error = message
-            }
-
-            viewModel.shouldCloseDisplay.observe(this) {
-                finish()
-            }
-        }
-
-        private fun addTextChangeListeners() {
-            binding.etName.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
-
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    viewModel.resetErrorInputName()
-                }
-
-                override fun afterTextChanged(p0: Editable?) {
-                }
-            })
-
-            binding.etQty.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
-
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    viewModel.resetErrorInputQty()
-                }
-
-                override fun afterTextChanged(p0: Editable?) {
-                }
-            })
-        }
-
-        private fun launchAddMode() = with(binding) {
-            btnSave.setOnClickListener {
-                viewModel.addShopItem(etName.text?.toString(), etQty.text?.toString())
-            }
-        }
-
-        private fun launchEditMode() = with(binding) {
-            viewModel.getShopItem(shopItemId)
-            viewModel.shopItem.observe(this@ShopItemActivity) {
-                etName.setText(it.name)
-                etQty.setText(it.qty.toString())
-            }
-            btnSave.setOnClickListener {
-                viewModel.editShopItem(etName.text?.toString(), etQty.text?.toString())
-            }
-        }
-
-
-
-    */
     companion object {
         private const val EXTRA_SHOP_ITEM_ID = "EXTRA_SHOP_ITEM_ID"
         private const val EXTRA_SCREEN_MODE = "EXTRA_SCREEN_MODE"
