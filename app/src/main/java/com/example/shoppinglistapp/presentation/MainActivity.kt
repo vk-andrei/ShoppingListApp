@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // if PORTRAIT_SCREEN it will be NULLs
-        containerInMain = findViewById(R.id.container_on_main_activity)
+        containerInMain = findViewById(R.id.container_for_shop_item)
 
         setupRecyclerView()
 
@@ -110,7 +110,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun launchFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().add(R.id.container_on_main_activity, fragment)
+        // to delete previous fragment if it is exist
+        supportFragmentManager.popBackStack()
+        supportFragmentManager.beginTransaction().replace(R.id.container_for_shop_item, fragment)
             .addToBackStack("").commit()
     }
 
