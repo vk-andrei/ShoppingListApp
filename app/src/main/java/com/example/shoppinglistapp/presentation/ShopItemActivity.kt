@@ -3,11 +3,7 @@ package com.example.shoppinglistapp.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModelProvider
 import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.databinding.ActivityShopItemBinding
 import com.example.shoppinglistapp.domain.ShopItem
@@ -52,7 +48,7 @@ class ShopItemActivity : AppCompatActivity() {
         }
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.main_container, fragmentInRightMode)
+            .add(R.id.container_for_shop_item, fragmentInRightMode)
             .commit()
     }
 

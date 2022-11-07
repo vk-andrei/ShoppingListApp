@@ -1,8 +1,9 @@
 package com.example.shoppinglistapp.presentation
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -15,9 +16,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private lateinit var shopListAdapter: ShopListAdapter
 
+    private var containerInMain: FragmentContainerView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // if PORTRAIT_SCREEN it will be NULLs
+        containerInMain = findViewById(R.id.container_on_main_activity)
 
         setupRecyclerView()
 
@@ -29,8 +35,12 @@ class MainActivity : AppCompatActivity() {
 
         val fab = findViewById<FloatingActionButton>(R.id.fab_add_shop_item)
         fab.setOnClickListener {
-            val intent = ShopItemActivity.newIntentAddItem(this@MainActivity)
-            startActivity(intent)
+            if (isPortraitMode()) {
+                val intent = ShopItemActivity.newIntentAddItem(this@MainActivity)
+                startActivity(intent)
+            } else {
+                launchFragment(ShopItemFragment.newInstanceAddShopItem())
+            }
         }
     }
 
@@ -64,8 +74,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupClickListener() {
         shopListAdapter.onShopItemClickListener = {
-            val intent = ShopItemActivity.newIntentEditItem(this@MainActivity, it.id)
-            startActivity(intent)
+            if (isPortraitMode()) {
+                val intent = ShopItemActivity.newIntentEditItem(this@MainActivity, it.id)
+                startActivity(intent)
+            } else {
+                launchFragment(ShopItemFragment.newInstanceEditShopItem(it.id))
+            }
         }
     }
 
@@ -89,6 +103,15 @@ class MainActivity : AppCompatActivity() {
         }
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(rvShopList)
+    }
+
+    private fun isPortraitMode(): Boolean {
+        return containerInMain == null
+    }
+
+    private fun launchFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().add(R.id.container_on_main_activity, fragment)
+            .addToBackStack("").commit()
     }
 
 }
