@@ -44,9 +44,7 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
-<!--
-    android:hint="@string/quantity"
--->
+<!--    android:hint="@string/quantity"-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_save"
