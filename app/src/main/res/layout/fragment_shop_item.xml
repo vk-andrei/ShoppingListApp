@@ -11,6 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
+        android:hint="@string/name"
         app:layout_constraintBottom_toTopOf="@+id/til_qty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,9 +24,9 @@
             android:layout_height="wrap_content"
 
             android:inputType="textCapWords" />
-<!--
-        android:hint="@string/name"
--->
+        <!--
+                android:hint="@string/name"
+        -->
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -33,6 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
+        android:hint="@string/quantity"
         app:layout_constraintBottom_toTopOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +46,7 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
-<!--    android:hint="@string/quantity"-->
+    <!--    android:hint="@string/quantity"-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_save"

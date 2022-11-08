@@ -49,7 +49,7 @@ class ShopItemActivity : AppCompatActivity() {
             else -> throw java.lang.RuntimeException("Unknown screen mode $screenMode")
         }
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container_for_shop_item, fragmentInRightMode)
+            .replace(R.id.container_in_shop_item_activity, fragmentInRightMode)
             .commit()
     }
 
