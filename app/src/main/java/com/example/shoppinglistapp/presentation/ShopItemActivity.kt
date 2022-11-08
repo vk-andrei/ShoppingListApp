@@ -3,12 +3,13 @@ package com.example.shoppinglistapp.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.databinding.ActivityShopItemBinding
 import com.example.shoppinglistapp.domain.ShopItem
 
-class ShopItemActivity : AppCompatActivity() {
+class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnFinishedEditingListener {
 
     private lateinit var binding: ActivityShopItemBinding
     private var screenMode = MODE_UNKNOWN
@@ -72,5 +73,9 @@ class ShopItemActivity : AppCompatActivity() {
             i.putExtra(EXTRA_SHOP_ITEM_ID, shopItemId)
             return i
         }
+    }
+
+    override fun onFinishedEditing() {
+        Toast.makeText(this, "ITEM SAVED", Toast.LENGTH_SHORT).show()
     }
 }
