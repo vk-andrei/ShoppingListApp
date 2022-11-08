@@ -21,8 +21,11 @@
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name"
+
             android:inputType="textCapWords" />
+<!--
+        android:hint="@string/name"
+-->
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -39,9 +42,11 @@
             android:id="@+id/et_qty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/quantity"
             android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
+<!--
+    android:hint="@string/quantity"
+-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_save"
