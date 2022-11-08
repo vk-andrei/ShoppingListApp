@@ -49,5 +49,4 @@
         app:layout_constraintStart_toStartOf="@id/gl_middle"
         app:layout_constraintTop_toTopOf="parent" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
