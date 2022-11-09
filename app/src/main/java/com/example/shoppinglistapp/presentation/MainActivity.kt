@@ -119,6 +119,6 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnFinishedEditingList
 
     override fun onFinishedEditing() {
         Toast.makeText(this, "ITEM SAVED", Toast.LENGTH_SHORT).show()
+        supportFragmentManager.popBackStack()
     }
-
 }

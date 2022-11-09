@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.shoppinglistapp.domain.ShopItem
 import com.example.shoppinglistapp.domain.ShopListRepository
-import java.lang.RuntimeException
 import kotlin.random.Random
 
 object ShopListRepositoryImpl : ShopListRepository {

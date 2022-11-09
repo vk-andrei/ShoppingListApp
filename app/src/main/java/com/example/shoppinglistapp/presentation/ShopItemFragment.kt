@@ -1,7 +1,6 @@
 package com.example.shoppinglistapp.presentation
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -26,6 +25,7 @@ class ShopItemFragment : Fragment() {
     private lateinit var onFinishedEditingListener: OnFinishedEditingListener
 
     override fun onAttach(context: Context) {
+        Log.d("FRAG", "FRAGMENT: onAttach")
         super.onAttach(context)
         if (context is OnFinishedEditingListener) {
             onFinishedEditingListener = context
@@ -35,6 +35,7 @@ class ShopItemFragment : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("FRAG", "FRAGMENT: onCreate")
         super.onCreate(savedInstanceState)
         parseParams()
     }
@@ -44,17 +45,54 @@ class ShopItemFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d("FRAG", "FRAGMENT: onCreateView")
         _binding = FragmentShopItemBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("FRAG", "FRAGMENT: onViewCreated")
 
         viewModel = ViewModelProvider(this)[ShopItemViewModel::class.java]
         launchRightMode()
         observeViewModel()
         addTextChangeListeners()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("FRAG", "FRAGMENT: onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("FRAG", "FRAGMENT: onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("FRAG", "FRAGMENT: onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("FRAG", "FRAGMENT: onStop")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("FRAG", "FRAGMENT: onDestroyView")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("FRAG", "FRAGMENT: onDestroy")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d("FRAG", "FRAGMENT: onDetach")
     }
 
     private fun parseParams() {
@@ -103,7 +141,6 @@ class ShopItemFragment : Fragment() {
 
         viewModel.shouldCloseDisplay.observe(viewLifecycleOwner) {
             onFinishedEditingListener.onFinishedEditing()
-            activity?.onBackPressed()
         }
     }
 

@@ -54,11 +54,17 @@ class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnFinishedEditing
             .commit()
     }
 
+    override fun onFinishedEditing() {
+        Toast.makeText(this, "ITEM SAVED", Toast.LENGTH_SHORT).show()
+        finish()
+    }
+
     companion object {
         private const val EXTRA_SHOP_ITEM_ID = "EXTRA_SHOP_ITEM_ID"
         private const val EXTRA_SCREEN_MODE = "EXTRA_SCREEN_MODE"
         private const val MODE_ADD = "MODE_ADD"
         private const val MODE_EDIT = "MODE_EDIT"
+
         private const val MODE_UNKNOWN = ""
 
         fun newIntentAddItem(context: Context): Intent {
@@ -73,9 +79,5 @@ class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnFinishedEditing
             i.putExtra(EXTRA_SHOP_ITEM_ID, shopItemId)
             return i
         }
-    }
-
-    override fun onFinishedEditing() {
-        Toast.makeText(this, "ITEM SAVED", Toast.LENGTH_SHORT).show()
     }
 }
